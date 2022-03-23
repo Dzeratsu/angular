@@ -1,0 +1,16 @@
+<div class="userForm" xmlns="http://www.w3.org/1999/html">
+  <h2>Регистрация</h2>
+  <form
+    [formGroup]="formReg"
+    (ngSubmit)="reg()"
+  >
+    <input placeholder="Введите имя"
+           formControlName="name"
+    >
+    <input placeholder="Введите пароль" type="password"
+           formControlName="password"
+    >
+    <div><span>Ошибки</span></div>
+    <div> <button type="submit" [disabled]="formReg.invalid">Зарегистрироваться</button></div>
+  </form>
+</div>

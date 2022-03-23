@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+$bgWhite: #fcfeff;
+html {
+  font-family: Roboto, sans-serif;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: red
+}
+
+.active-link {
+  text-decoration: underline;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.header {
+  margin: 0 auto;
+  width: 320px;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 50px;
+}
+
+.userForm {
+  box-sizing: border-box;
+  padding: 25px;
+  background-color: bgWhite;
+  margin: 0 auto;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 5px 15px 25px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+input {
+  font-family: Roboto, sans-serif;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid gray;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  padding-left: 5px;
+  width: 200px;
+  height: 25px;
+  outline: none !important;
+}
+
+input::-webkit-input-placeholder {
+  color: #B5B5B5;
+  padding-left: 5px
+}
+
+input::-ms-input-placeholder {
+  color: #B5B5B5;
+  padding-left: 5px
+}
+
+input::-ms-input-placeholder {
+  color: #B5B5B5;
+  padding-left: 5px
+}
+
+input::placeholder {
+  color: #B5B5B5;
+  padding-left: 5px
+}
+
+button {
+  min-width: 130px;
+  height: 35px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  background-color: #bde0ff;
+}
