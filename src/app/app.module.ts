@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {AuthGuard} from "./auth.guard";
 import {BaseInterceptor} from "./base.interceptor";
 import { TableComponent } from './table/table.component';
+import { AddgroupComponent } from './addgroup/addgroup.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TableComponent } from './table/table.component';
     AuthComponent,
     RegComponent,
     DashboardComponent,
-    TableComponent
+    TableComponent,
+    AddgroupComponent
   ],
     imports: [
         BrowserModule,

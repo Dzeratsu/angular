@@ -8,11 +8,12 @@ import {
 } from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import {UserService} from "./service/user.service";
+import {Router} from "@angular/router"
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router:Router) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -29,6 +30,7 @@ export class BaseInterceptor implements HttpInterceptor {
           (err) => {
             if (err instanceof HttpErrorResponse) {
               if (err.status == 401)
+                this.router.navigate(['/login'])
                 this.userService.logout()
             }
           }

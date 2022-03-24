@@ -1,2 +1,7 @@
-<p>dashboard works!</p>
-<app-table><app-table>
+<div class="dashboard wrapper">
+ <div> <app-addgroup></app-addgroup></div>
+  <div><app-table
+  *ngFor="let item of tsGroup"
+  [tsGroup]="item"
+></app-table></div>
+</div>

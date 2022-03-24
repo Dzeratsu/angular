@@ -5,3 +5,6 @@ export interface transportGroup {
   unitID? : number[]
   }
 
+export interface addGroupResp {
+  id:number
+}

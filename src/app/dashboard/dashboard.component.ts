@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {transportGroup} from "../interface/group";
+import {TransportService} from "../service/transport.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  tsGroup: transportGroup[] = []
+
+  constructor(private ts: TransportService) {}
 
   ngOnInit(): void {
+    this.getGroup()
   }
 
+  getGroup(): void{
+    this.ts.getAllGroup()
+      .subscribe( tsGroup => this.tsGroup = tsGroup)
+  }
 }

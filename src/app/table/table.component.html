@@ -1,11 +1,14 @@
-<div class="wrapper">
-  <pre>{{tsGroup | json}}</pre>
-  <span *ngFor="let item of tsGroup let index = index">{{index}} - {{item.name}} {{item.description}}</span>
-  <h2>Группа 1</h2>
-  <div>
-    <span>Name</span>
-    <span>Description</span>
+<div>
+  <div class="head-group">
+    <div>
+    <h2>{{tsGroup.name}}</h2>
+    <p>{{tsGroup.description}}</p>
+    </div>
     <button>Редактирова</button>
     <button>Удалить</button>
+  </div>
+  <div (click)="openList()" class="listHide">
+  <span *ngIf="!hide">раскрыть список</span>
+  <span *ngIf="hide">скрыть список</span>
   </div>
 </div>

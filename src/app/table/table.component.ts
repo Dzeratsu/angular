@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {TransportService} from "../service/transport.service";
 import {transportGroup} from "../interface/group";
 
@@ -8,16 +8,19 @@ import {transportGroup} from "../interface/group";
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  tsGroup: transportGroup[] = []
 
-  constructor(private ts: TransportService) {}
+  @Input() tsGroup!: transportGroup
+  name!: string
+  description!: string
+  unitID!: number[]
+
+  hide: boolean = false
+  constructor() {}
 
   ngOnInit(): void {
-    this.getGroup()
   }
 
-getGroup(): void{
-    this.ts.getAllGroup()
-      .subscribe( tsGroup => this.tsGroup = tsGroup)
-}
+    openList(): void {
+    this.hide = !this.hide
+    }
 }
