@@ -11,7 +11,7 @@ export class RegComponent implements OnInit {
 
   constructor(private user: UserService) {}
 
-  formReg: FormGroup
+  formReg!: FormGroup
 
   ngOnInit() {
     this.formReg = new FormGroup({

@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <pre>{{tsGroup | json}}</pre>
+  <span *ngFor="let item of tsGroup let index = index">{{index}} - {{item.name}} {{item.description}}</span>
+  <h2>Группа 1</h2>
+  <div>
+    <span>Name</span>
+    <span>Description</span>
+    <button>Редактирова</button>
+    <button>Удалить</button>
+  </div>
+</div>

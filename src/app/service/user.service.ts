@@ -38,6 +38,7 @@ export class UserService {
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['/login'])
   }
 
   setToken(token: Token) {

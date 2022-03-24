@@ -11,7 +11,7 @@ export class AuthComponent implements OnInit {
 
   constructor(private user: UserService) {}
 
-  formLogin: FormGroup
+  formLogin!: FormGroup
 
   ngOnInit() {
     this.formLogin = new FormGroup({
@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
     })
   }
 
-  submitLogin(){
+  submitLogin(): void{
     this.user.login(this.formLogin.value)
   }
 
