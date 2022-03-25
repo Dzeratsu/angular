@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {TransportService} from "../service/transport.service";
-import {transportGroup} from "../interface/group";
+import {allTransport, transportGroup} from "../interface/group";
 
 @Component({
   selector: 'app-table',
@@ -13,6 +13,8 @@ export class TableComponent implements OnInit {
   name!: string
   description!: string
   unitID!: number[]
+
+  @Input() allTsGroup: allTransport[] = []
 
   hide: boolean = false
   constructor() {}

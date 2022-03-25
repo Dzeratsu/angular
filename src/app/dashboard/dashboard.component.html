@@ -3,5 +3,6 @@
   <div><app-table
   *ngFor="let item of tsGroup"
   [tsGroup]="item"
+  [allTsGroup] = transportFiltered(item.id)
 ></app-table></div>
 </div>

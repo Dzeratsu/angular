@@ -7,6 +7,13 @@
     <button>Редактирова</button>
     <button>Удалить</button>
   </div>
+
+    <div *ngIf="hide">
+      <app-table-item
+      *ngFor="let ts of allTsGroup"
+      [oneTs]="ts"
+      >
+      </app-table-item></div>
   <div (click)="openList()" class="listHide">
   <span *ngIf="!hide">раскрыть список</span>
   <span *ngIf="hide">скрыть список</span>

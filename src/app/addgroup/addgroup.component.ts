@@ -8,7 +8,7 @@ import {addGroupResp} from "../interface/group";
 @Component({
   selector: 'app-addgroup',
   templateUrl: './addgroup.component.html',
-  styleUrls: ['./addgroup.component.scss']
+  styleUrls: ['./addgroup.component.scss'],
 })
 export class AddgroupComponent implements OnInit {
 
@@ -28,6 +28,7 @@ export class AddgroupComponent implements OnInit {
       return this.ts.postAddGroup(this.formGroup.value).subscribe(
         resp => {
           this.respInfo = resp
+          this.ts.getAllGroup()
         }
       )
     }

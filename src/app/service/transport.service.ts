@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {catchError, Observable, tap} from "rxjs";
-import {addGroupResp, transportGroup} from "../interface/group";
+import {addGroupResp, allTransport, transportGroup} from "../interface/group";
 import {addGroup} from "../interface/formaGroup";
 
 @Injectable({
@@ -15,6 +15,9 @@ export class TransportService {
   url = 'http://localhost:3000'
   getAllGroup(): Observable<transportGroup[]> {
     return this.http.get<transportGroup[]>(this.url + '/tsgroup/all')
+  }
+  getAllTransport(): Observable<allTransport[]>{
+    return this.http.get<allTransport[]>(this.url + '/transport')
   }
   postAddGroup(object: addGroup):Observable<addGroupResp> {
     return this.http.post<addGroupResp>(this.url +  '/tsgroup/add', object)

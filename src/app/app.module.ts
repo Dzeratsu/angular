@@ -11,6 +11,7 @@ import {AuthGuard} from "./auth.guard";
 import {BaseInterceptor} from "./base.interceptor";
 import { TableComponent } from './table/table.component';
 import { AddgroupComponent } from './addgroup/addgroup.component';
+import { TableItemComponent } from './table-item/table-item.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AddgroupComponent } from './addgroup/addgroup.component';
     RegComponent,
     DashboardComponent,
     TableComponent,
-    AddgroupComponent
+    AddgroupComponent,
+    TableItemComponent
   ],
     imports: [
         BrowserModule,
