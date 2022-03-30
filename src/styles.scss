@@ -10,6 +10,15 @@ a, a:visited {
   color: black;
 }
 
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 a:hover {
   color: red
 }
@@ -35,7 +44,7 @@ a:hover {
 .userForm {
   box-sizing: border-box;
   padding: 25px;
-  background-color: bgWhite;
+  background-color: $bgWhite;
   margin: 0 auto;
   width: 300px;
   display: flex;
@@ -59,7 +68,6 @@ input {
   outline: none !important;
 }
 textarea{
-  padding: 5px;
   width: 200px;
   font-family: Roboto, sans-serif;
   resize: none;
@@ -96,4 +104,45 @@ button {
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.1);
   font-size: 16px;
   background-color: #bde0ff;
+}
+
+.check {
+  padding: 0;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.ts-item {
+  background-color: #bde0ff;
+  margin: 2px;
+}
+.ts-item-flex{
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  .id{
+    width: 10px;
+  }
+  .name{
+    width: 100px;
+  }
+  .description{
+    width: 140px;
+  }
+  .date{
+    width: 80px;
+  }
+
+}
+.listHide{
+  span{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  :hover{
+    color: red;
+  }
 }

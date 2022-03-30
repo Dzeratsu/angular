@@ -16,7 +16,7 @@ export class AddgroupComponent implements OnInit {
   }
 
   formGroup!: FormGroup
-  respInfo!: addGroupResp
+  respInfo!: addGroupResp | false
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -28,7 +28,11 @@ export class AddgroupComponent implements OnInit {
       return this.ts.postAddGroup(this.formGroup.value).subscribe(
         resp => {
           this.respInfo = resp
+          setTimeout(()=>{
+            this.respInfo = false
+          }, 2500)
           this.ts.getAllGroup()
+          this.formGroup.reset()
         }
       )
     }

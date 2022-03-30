@@ -1,0 +1,27 @@
+.ts-item {
+  background-color: #bde0ff;
+  margin: 2px;
+}
+.ts-item-flex{
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  .id{
+    width: 10px;
+  }
+  .name{
+    width: 100px;
+  }
+  .description{
+  width: 140px;
+  }
+  .date{
+    width: 80px;
+  }
+
+}
+button{
+  width: 30px!important;
+}

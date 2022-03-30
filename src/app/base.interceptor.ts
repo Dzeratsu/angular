@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse, HttpResponse
 } from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
 import {UserService} from "./service/user.service";
@@ -26,11 +26,15 @@ export class BaseInterceptor implements HttpInterceptor {
     }
     return next.handle(reqHead)
       .pipe(
-        tap(
+        tap((event) => {
+          if(event instanceof HttpResponse){
+            console.log('server response')
+          }
+        },
           (err) => {
             if (err instanceof HttpErrorResponse) {
               if (err.status == 401)
-                this.router.navigate(['/login'])
+                this.router.navigate(['login'])
                 this.userService.logout()
             }
           }

@@ -1,0 +1,19 @@
+<div class="userForm">
+  <h2>Добавить ТС</h2>
+  <form
+    [formGroup]="formGroup"
+    (ngSubmit)="submitTs()"
+  >
+    <input placeholder="Введите название"
+           formControlName="name"
+    >
+    <textarea placeholder="Описание транспортногос средства"
+              formControlName="description"></textarea>
+    <div *ngIf="respInfo"><span>Добавлено ТС с id: {{respInfo.id}}</span></div>
+    <h2>Выберите группу</h2>
+    <ul *ngFor="let group of groupALl let i = index">
+      <li>{{group.name}}<input type="checkbox" (change)="changeGroup(i)" class="check" [checked]="clearCheck"></li>
+    </ul>
+    <div> <button type="submit" [disabled]="formGroup.invalid">Добавить</button></div>
+  </form>
+</div>

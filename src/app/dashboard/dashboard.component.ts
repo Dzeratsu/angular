@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, Output, ViewChild} from '@angular/core';
 import {allTransport, transportGroup} from "../interface/group";
 import {TransportService} from "../service/transport.service";
-import {AddgroupComponent} from "../addgroup/addgroup.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,25 +10,29 @@ import {AddgroupComponent} from "../addgroup/addgroup.component";
 export class DashboardComponent implements OnInit {
 
   tsGroup: transportGroup[] = []
-  transport: allTransport[]  = []
+  transport: allTransport[] = []
+  hide: boolean = false
 
-  constructor(private ts: TransportService) {}
+  constructor(private ts: TransportService) {
+  }
 
   ngOnInit(): void {
-    this.getGroup()
-    this.getTransport()
-  }
-
-  getGroup(): void{
+    this.ts.groupALl.subscribe((resp) => this.tsGroup = resp)
+    this.ts.allTransportSubj.subscribe((resp) => this.transport = resp)
     this.ts.getAllGroup()
-      .subscribe( tsGroup => this.tsGroup = tsGroup)
+    this.ts.getAllTransport()
+    this.transportNoGroup()
   }
-  getTransport(): void{
-     this.ts.getAllTransport()
-      .subscribe(allTs => this.transport = allTs)
-  }
-   transportFiltered(id: number): allTransport[]{
-     return this.transport.filter(object => object.unitID?.includes(id))
 
-    }
+  openList(): void {
+    this.hide = !this.hide
+  }
+
+  transportFiltered(id: number): allTransport[] {
+    return this.transport.filter(object => object.unitID?.includes(id))
+  }
+
+  transportNoGroup(): allTransport[] {
+    return this.transport.filter(object => object.unitID?.length == 0)
+  }
 }

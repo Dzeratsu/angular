@@ -1,8 +1,46 @@
-<div class="dashboard wrapper">
- <div> <app-addgroup></app-addgroup></div>
-  <div><app-table
-  *ngFor="let item of tsGroup"
-  [tsGroup]="item"
-  [allTsGroup] = transportFiltered(item.id)
-></app-table></div>
+<div class="dashboard">
+  <div><a routerLink="add-transport">
+    <button>Добавить ТС</button>
+  </a>
+    <a routerLink="add-group">
+      <button>Добавить Группу</button>
+    </a>
+  </div>
 </div>
+<div class="wrapper dashboard">
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+  <div>
+    <app-table
+      *ngFor="let item of tsGroup"
+      [tsGroup]="item"
+      [allTsGroup]=transportFiltered(item.id)
+    ></app-table>
+    <div>
+      <h2>ТС без групп</h2>
+      <div *ngIf="hide">
+        <div *ngIf="hide">
+          <div class="ts-item-flex">
+            <div class="id">id
+            </div>
+            <div class="name">Имя
+            </div>
+            <div class="description"> Описание</div>
+            <div class="date">Дата</div>
+          </div>
+        </div>
+        <app-table-item
+          *ngFor="let item of transportNoGroup()"
+          [oneTs]="item"
+        ></app-table-item>
+      </div>
+      <div (click)="openList()" class="listHide">
+        <span *ngIf="!hide">раскрыть список</span>
+        <span *ngIf="hide">скрыть список</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+

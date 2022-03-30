@@ -1,5 +1,12 @@
-<div>
-  {{oneTs.id}}
-  {{oneTs.name}}
-  {{oneTs.description}}
+<div class="ts-item">
+  <a [routerLink]="['edit-ts', oneTs.id]">
+    <div class="ts-item-flex">
+      <div class="id">{{oneTs.id}}</div>
+      <div class="name">
+        {{oneTs.name}}
+      </div>
+      <div class="description">{{oneTs.description}}</div>
+      <div class="date">{{maskDate}}</div>
+    </div>
+  </a>
 </div>

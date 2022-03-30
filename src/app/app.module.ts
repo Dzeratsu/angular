@@ -12,6 +12,10 @@ import {BaseInterceptor} from "./base.interceptor";
 import { TableComponent } from './table/table.component';
 import { AddgroupComponent } from './addgroup/addgroup.component';
 import { TableItemComponent } from './table-item/table-item.component';
+import {UserService} from "./service/user.service";
+import {AddTsComponent} from "./add-ts/add-ts.component";
+import { EditTsComponent } from './edit-ts/edit-ts.component';
+import { EditGroupComponent } from './edit-group/edit-group.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { TableItemComponent } from './table-item/table-item.component';
     DashboardComponent,
     TableComponent,
     AddgroupComponent,
-    TableItemComponent
+    TableItemComponent,
+    AddTsComponent,
+    EditTsComponent,
+    EditGroupComponent
   ],
     imports: [
         BrowserModule,
@@ -29,7 +36,7 @@ import { TableItemComponent } from './table-item/table-item.component';
         HttpClientModule,
         ReactiveFormsModule,
     ],
-  providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},],
+  providers: [AuthGuard, UserService, {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

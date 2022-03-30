@@ -10,7 +10,7 @@
     <input placeholder="Введите пароль" type="password"
     formControlName="password"
     >
-    <div><span>Ошибки</span></div>
+    <div><span *ngIf="error">{{error}}</span></div>
     <div> <button type="submit" [disabled]="formLogin.invalid">Вход</button></div>
   </form>
 </div>

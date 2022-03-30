@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {TransportService} from "../service/transport.service";
 import {allTransport, transportGroup} from "../interface/group";
 
@@ -16,13 +16,20 @@ export class TableComponent implements OnInit {
 
   @Input() allTsGroup: allTransport[] = []
 
+
   hide: boolean = false
-  constructor() {}
+
+  constructor(private ts: TransportService) {
+  }
 
   ngOnInit(): void {
   }
 
-    openList(): void {
+  openList(): void {
     this.hide = !this.hide
-    }
+  }
+
+  delGroup(id: number): void {
+    this.ts.delGroup(id).subscribe(() => this.ts.getAllGroup())
+  }
 }

@@ -1,21 +1,30 @@
 <div>
   <div class="head-group">
     <div>
-    <h2>{{tsGroup.name}}</h2>
-    <p>{{tsGroup.description}}</p>
+      <h2>{{tsGroup.name}}</h2>
+      <p>{{tsGroup.description}}</p>
     </div>
-    <button>Редактирова</button>
-    <button>Удалить</button>
+    <a [routerLink]="['edit-group', tsGroup.id]">
+      <button>Редактировать</button>
+    </a>
+    <button (click)="delGroup(tsGroup.id)">Удалить</button>
   </div>
-
-    <div *ngIf="hide">
-      <app-table-item
+  <div *ngIf="hide">
+    <div class="ts-item-flex">
+      <div class="id">id
+      </div>
+      <div class="name">Имя
+      </div>
+      <div class="description"> Описание</div>
+      <div class="date">Дата</div>
+    </div>
+    <app-table-item
       *ngFor="let ts of allTsGroup"
       [oneTs]="ts"
-      >
-      </app-table-item></div>
+    ></app-table-item>
+  </div>
   <div (click)="openList()" class="listHide">
-  <span *ngIf="!hide">раскрыть список</span>
-  <span *ngIf="hide">скрыть список</span>
+    <span *ngIf="!hide">раскрыть список</span>
+    <span *ngIf="hide">скрыть список</span>
   </div>
 </div>

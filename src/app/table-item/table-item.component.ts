@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {transportGroup} from "../interface/group";
+import {allTransport, transportGroup} from "../interface/group";
 
 @Component({
   selector: 'app-table-item',
@@ -8,10 +8,25 @@ import {transportGroup} from "../interface/group";
 })
 export class TableItemComponent implements OnInit {
 
-  @Input() oneTs!: transportGroup
+  @Input()
+  oneTs
+  maskDate
+
   constructor() { }
 
   ngOnInit(): void {
+    this.maskDate = this.timeMask()
   }
-
+  timeMask(){
+    const date = new Date(this.oneTs.createdAt)
+    function mask (a){
+      if(a < 10){
+        return '0' + (a + 1)
+      }else {
+        return a + 1
+      }
+    }
+    const time = mask(date.getDate()) + ":" + mask(date.getMonth()) + ":" + date.getFullYear()
+    return time
+  }
 }
