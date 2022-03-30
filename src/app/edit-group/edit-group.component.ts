@@ -30,8 +30,8 @@ export class EditGroupComponent implements OnInit, OnDestroy {
     this.ts.groupALl.subscribe((resp) => this.groupData = resp.filter(object => object.id == this.urlParam))
     console.log(this.groupData)
     this.formGroup = new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      description: new FormControl(this.groupData.description, [Validators.required, Validators.maxLength(100)])
+      name: new FormControl(this.groupData[0].name, [Validators.required]),
+      description: new FormControl(this.groupData[0].description, [Validators.required, Validators.maxLength(100)])
     })
   }
   ngOnDestroy():void{
