@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {addGroupResp} from "../interface/group";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import {addGroup} from "../interface/formaGroup";
@@ -14,7 +14,7 @@ import {TransportService} from "../service/transport.service";
 })
 export class EditGroupComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private ts: TransportService) { }
+  constructor(private route: ActivatedRoute, private ts: TransportService, private router: Router) { }
 
   formGroup!: FormGroup
   respInfo!: addGroupResp | false
@@ -22,6 +22,9 @@ export class EditGroupComponent implements OnInit, OnDestroy {
   groupData
 
   ngOnInit(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false
+    }
     this.ts.getAllGroup()
     this.route.params.subscribe(params => this.urlParam = params['id'])
     this.ts.groupALl.subscribe((resp) => this.groupData = resp.filter(object => object.id == this.urlParam))
