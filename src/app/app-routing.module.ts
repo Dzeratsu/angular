@@ -16,8 +16,8 @@ const routes: Routes = [
   children: [
     {path: 'add-transport', component: AddTsComponent},
     {path: 'add-group', component: AddgroupComponent},
-    {path: 'edit-ts/:id', component:EditTsComponent },
-    {path: 'edit-group/:id', component: EditGroupComponent}
+    {path: 'edit-ts/:id', component:EditTsComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange'},
+    {path: 'edit-group/:id', component: EditGroupComponent, runGuardsAndResolvers: 'paramsOrQueryParamsChange' }
   ]}
 ];
 

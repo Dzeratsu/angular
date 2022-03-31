@@ -24,7 +24,6 @@ export class EditGroupComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false
     }
-    this.ts.getAllGroup()
     this.route.params.subscribe(params => this.urlParam = params['id'])
     this.ts.groupALl.subscribe((resp) => {
       this.groupData = resp.filter(object => object.id == this.urlParam)
@@ -39,7 +38,7 @@ export class EditGroupComponent implements OnInit {
     return this.ts.putEditGroup(this.formEditGroup.value, this.groupData[0].id).subscribe(
       resp => {
         console.log(resp)
-        this.respInfo = false
+        this.respInfo = true
         this.message = 'Группа успешно отредактирована'
         this.ts.getAllGroup()
       },

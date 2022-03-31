@@ -1,1 +1,20 @@
-<p>edit-ts works!</p>
+<div class="userForm">
+  <h2>Редактирова ТС</h2>
+  <form
+    [formGroup]="formEditTs"
+    (ngSubmit)="editTs()"
+  >
+    <input placeholder="Введите название"
+           formControlName="name"
+    >
+    <textarea placeholder="Описание транспортногос средства"
+              formControlName="description"></textarea>
+    <!--<div *ngIf="respInfo"><span>Добавлено ТС с id: {{respInfo.id}}</span></div>-->
+    <h2>Выберите группу</h2>
+    <ul *ngFor="let group of groupALl let i = index">
+      <li>{{group.name}}<input type="checkbox" class="check" (change)="changeGroup(i)" [checked]="groupALl[i].check"></li>
+    </ul>
+    {{groupALl | json}}
+    <div> <button type="submit" [disabled]="formEditTs.invalid">Добавить</button></div>
+  </form>
+</div>
