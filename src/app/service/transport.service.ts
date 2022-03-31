@@ -13,11 +13,12 @@ export class TransportService {
   groupALl = new BehaviorSubject<transportGroup[]>([])
   allTransportSubj = new BehaviorSubject<allTransport[]>([])
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
   url = 'http://localhost:3000'
 
-  getAllGroup(){
+  getAllGroup() {
     return this.http.get<transportGroup[]>(this.url + '/tsgroup/all').subscribe((resp) => this.groupALl.next(resp))
   }
 
@@ -32,8 +33,14 @@ export class TransportService {
       err => console.error(err)
   }
 
-  postAddTs(object: Transport): Observable<Transport>{
-     return this.http.post<Transport>(this.url + '/transport/add', object)
+  putEditGroup(object: addGroup, id: number): Observable<addGroup> {
+    return this.http.put<addGroup>(this.url + `/tsgroup/edit/${id}`, object).pipe()
+    tap(() => console.log('group edit')),
+      err => console.error(err)
+  }
+
+  postAddTs(object: Transport): Observable<Transport> {
+    return this.http.post<Transport>(this.url + '/transport/add', object)
   }
 
   delGroup(id: number) {

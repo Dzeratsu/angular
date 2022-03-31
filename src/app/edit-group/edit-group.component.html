@@ -1,16 +1,17 @@
 <div class="userForm">
   <h2>Редактировать группу</h2>
   <form
-    [formGroup]="formGroup"
+    [formGroup]="formEditGroup"
     (ngSubmit)="editGroup()"
-    >
+  >
     <input placeholder="Введите название"
            formControlName="name"
     >
     <textarea placeholder="Описание группы"
-              [value]="groupData.description"
               formControlName="description"></textarea>
-    <div *ngIf="respInfo"><span>Группа добавлена с id: {{respInfo.id}}</span></div>
-    <div> <button type="submit"  [disabled]="formGroup.invalid">Редактировать</button></div>
+    <div *ngIf="respInfo"><span>{{message}}</span></div>
+    <div>
+      <button type="submit">Редактировать</button>
+    </div>
   </form>
 </div>

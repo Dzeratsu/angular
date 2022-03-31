@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {addGroupResp} from "../interface/group";
 import {TransportService} from "../service/transport.service";
@@ -11,7 +11,8 @@ import {Transport} from "../interface/transport";
 })
 export class AddTsComponent implements OnInit {
 
-  constructor(private ts: TransportService) { }
+  constructor(private ts: TransportService) {
+  }
 
   formGroup!: FormGroup
   respInfo!: any | false
@@ -26,27 +27,30 @@ export class AddTsComponent implements OnInit {
       unitID: new FormControl([])
     })
   }
+
   submitTs() {
-   this.formGroup.value.unitID = this.createArray()
-   return this.ts.postAddTs(this.formGroup.value).subscribe(
-     resp=> {
-       this.respInfo = resp
-       setTimeout(()=>{
-         this.respInfo = false
-       }, 2500)
-       this.clearCheck = false
-       this.ts.getAllTransport()
-       this.formGroup.reset()
-     }
-   )
+    this.formGroup.value.unitID = this.createArray()
+    return this.ts.postAddTs(this.formGroup.value).subscribe(
+      resp => {
+        this.respInfo = resp
+        setTimeout(() => {
+          this.respInfo = false
+        }, 2500)
+        this.clearCheck = false
+        this.ts.getAllTransport()
+        this.formGroup.reset()
+      }
+    )
   }
-  changeGroup(i:number){
+
+  changeGroup(i: number) {
     this.groupALl[i].check = !this.groupALl[i].check
   }
-  createArray(): number[]{
+
+  createArray(): number[] {
     let arr: number[] = []
-    for(let i:number = 0; i < this.groupALl.length; i++){
-      if(this.groupALl[i].check == true){
+    for (let i: number = 0; i < this.groupALl.length; i++) {
+      if (this.groupALl[i].check == true) {
         arr.push(this.groupALl[i].id)
       }
     }
