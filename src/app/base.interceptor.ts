@@ -33,9 +33,10 @@ export class BaseInterceptor implements HttpInterceptor {
         },
           (err) => {
             if (err instanceof HttpErrorResponse) {
-              if (err.status == 401)
+              if (err.status === 401){
                 this.router.navigate(['login'])
                 this.userService.logout()
+              }
             }
           }
         )

@@ -17,7 +17,7 @@
       [tsGroup]="item"
       [allTsGroup]=transportFiltered(item.id)
     ></app-table>
-    <div>
+    <div *ngIf="transportNoGroup().length !== 0">
       <h2>ТС без групп</h2>
       <div *ngIf="hide">
         <div *ngIf="hide">

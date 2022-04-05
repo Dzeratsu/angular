@@ -29,7 +29,7 @@ export class TableComponent implements OnInit {
     this.hide = !this.hide
   }
 
-  delGroup(id: number): void {
-    this.ts.delGroup(id).subscribe(() => this.ts.getAllGroup())
+  delGroup(idGroup: number, unitID) {
+   return this.ts.delGroup(idGroup, unitID)
   }
 }

@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {TransportService} from "../service/transport.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {map} from 'rxjs/operators'
+import {Observable} from "rxjs";
+import {Transport} from "../interface/transport";
 
 @Component({
   selector: 'app-edit-ts',
@@ -14,54 +17,72 @@ export class EditTsComponent implements OnInit {
   }
 
   formEditTs!: FormGroup
-  respInfo!: boolean
   urlParam!: number
-  tsData
-  groupALl
-  defCheck!: boolean
+  oneTs
+  allGroup
+  respInfo
 
   ngOnInit(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => {
       return false
     }
-    this.route.snapshot.queryParams['id']
     this.route.params.subscribe(params => this.urlParam = params['id'])
-    this.ts.groupALl.subscribe((resp) => {
-      this.groupALl = resp
+    this.ts.getOneTransport(this.urlParam).subscribe((resp) => {
+      this.oneTs = resp
+      this.addDataForm()
     })
-    this.ts.allTransportSubj.subscribe((resp) => {
-      this.tsData = resp.filter(object => object.id == this.urlParam)
-      this.formEditTs = new FormGroup({
-        name: new FormControl(this.tsData[0].name, [Validators.required]),
-        description: new FormControl(this.tsData[0].description, [Validators.required, Validators.maxLength(100)])
-      })
-      this.testCheck()
+    this.formEditTs = new FormGroup({
+      name: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required, Validators.maxLength(100)]),
+      unitID: new FormControl(null)
+    })
+    this.ts.groupALl.subscribe((resp) => {
+      this.allGroup = resp
+      this.addCheck()
+    })
+    if (this.allGroup == []) {
+      this.ts.getAllGroup()
+    }
+  }
+
+  addCheck() {
+    this.allGroup.map(value => {
+      return value.check = value.unitID.includes(Number(this.urlParam))
     })
   }
 
   changeGroup(i: number) {
-    this.groupALl[i].check = !this.groupALl[i].check
+    this.allGroup[i].check = !this.allGroup[i].check
+  }
+
+  addDataForm() {
+    {
+      this.formEditTs.setValue({name: this.oneTs.name, description: this.oneTs.description, unitID: []});
+    }
   }
 
   editTs() {
-    return
+    this.formEditTs.value.unitID = this.createArray()
+    return this.ts.putEditTS(this.formEditTs.value, this.oneTs.id).subscribe(
+      resp => {
+        this.respInfo = resp
+        setTimeout(() => {
+          this.respInfo = false
+        }, 2500)
+        this.ts.getAllTransport()
+        this.ts.getAllGroup()
+      })
   }
 
-  testCheck(): void {
-    let tsArr = this.tsData[0].unitID
-    for (let i: number = 0; i < tsArr.length; i++) {
-      for (let j: number = 0; j < this.groupALl.length; j++) {
-        if (this.groupALl[j].id == tsArr[i]) {
-          this.groupALl[j].check = true
-        }
-      }
-    }
+  deleteTs(id: number) {
+    return this.ts.delTs(id)
   }
+
   createArray(): number[] {
     let arr: number[] = []
-    for (let i: number = 0; i < this.groupALl.length; i++) {
-      if (this.groupALl[i].check == true) {
-        arr.push(this.groupALl[i].id)
+    for (let i: number = 0; i < this.allGroup.length; i++) {
+      if (this.allGroup[i].check == true) {
+        arr.push(this.allGroup[i].id)
       }
     }
     return arr

@@ -7,7 +7,7 @@
     <a [routerLink]="['edit-group', tsGroup.id]">
       <button>Редактировать</button>
     </a>
-    <button (click)="delGroup(tsGroup.id)">Удалить</button>
+    <button (click)="delGroup(tsGroup.id, tsGroup.unitID)">Удалить</button>
   </div>
   <div *ngIf="hide">
     <div class="ts-item-flex">

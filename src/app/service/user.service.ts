@@ -44,6 +44,5 @@ export class UserService {
   public get isLogIn(): boolean {
     return (localStorage.getItem('token') !== null)
   }
-
 }
 

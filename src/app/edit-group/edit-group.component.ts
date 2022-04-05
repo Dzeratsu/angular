@@ -25,15 +25,19 @@ export class EditGroupComponent implements OnInit {
       return false
     }
     this.route.params.subscribe(params => this.urlParam = params['id'])
+    this.formEditGroup = new FormGroup({
+      name: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required, Validators.maxLength(100)])
+    })
     this.ts.groupALl.subscribe((resp) => {
       this.groupData = resp.filter(object => object.id == this.urlParam)
-      this.formEditGroup = new FormGroup({
-        name: new FormControl(this.groupData[0].name, [Validators.required]),
-        description: new FormControl(this.groupData[0].description, [Validators.required, Validators.maxLength(100)])
-      })
+      this.addDataForm()
     })
   }
 
+  addDataForm() {
+    this.formEditGroup.setValue({name: this.groupData[0].name, description: this.groupData[0].description});
+  }
   editGroup() {
     return this.ts.putEditGroup(this.formEditGroup.value, this.groupData[0].id).subscribe(
       resp => {

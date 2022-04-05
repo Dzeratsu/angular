@@ -39,6 +39,7 @@ export class AddTsComponent implements OnInit {
         this.clearCheck = false
         this.ts.getAllTransport()
         this.formGroup.reset()
+        this.ts.getAllGroup()
       }
     )
   }

@@ -9,12 +9,15 @@
     >
     <textarea placeholder="Описание транспортногос средства"
               formControlName="description"></textarea>
-    <!--<div *ngIf="respInfo"><span>Добавлено ТС с id: {{respInfo.id}}</span></div>-->
-    <h2>Выберите группу</h2>
-    <ul *ngFor="let group of groupALl let i = index">
-      <li>{{group.name}}<input type="checkbox" class="check" (change)="changeGroup(i)" [checked]="groupALl[i].check"></li>
+    <h2>Группы ТС</h2>
+   <ul *ngFor="let item of allGroup let i = index">
+      <li>{{item.name}} <input type="checkbox"  (change)="changeGroup(i)" class="check" [checked]="item.check"></li>
     </ul>
-    {{groupALl | json}}
-    <div> <button type="submit" [disabled]="formEditTs.invalid">Добавить</button></div>
+    {{oneTs | json}}
+    <p>разделитель</p>
+    {{allGroup | json}}
+    <div *ngIf="respInfo"><span>ТС успешно отредактировано </span></div>
+    <div> <button (click)="deleteTs(oneTs.id)">Удалить ТС</button></div>
+    <div> <button type="submit">Редактировать</button></div>
   </form>
 </div>

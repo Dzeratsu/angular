@@ -4,6 +4,7 @@ import {Observable, tap, Subject, BehaviorSubject} from "rxjs";
 import {addGroupResp, allTransport, transportGroup} from "../interface/group";
 import {addGroup} from "../interface/formaGroup";
 import {Transport} from "../interface/transport";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class TransportService {
   groupALl = new BehaviorSubject<transportGroup[]>([])
   allTransportSubj = new BehaviorSubject<allTransport[]>([])
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   url = 'http://localhost:3000'
@@ -24,6 +25,10 @@ export class TransportService {
 
   getAllTransport() {
     return this.http.get<allTransport[]>(this.url + '/transport').subscribe((resp) => this.allTransportSubj.next(resp))
+  }
+
+  getOneTransport(id: number) {
+    return this.http.get(this.url + `/transport/${id}`)
   }
 
   postAddGroup(object: addGroup): Observable<addGroupResp> {
@@ -43,7 +48,32 @@ export class TransportService {
     return this.http.post<Transport>(this.url + '/transport/add', object)
   }
 
-  delGroup(id: number) {
-    return this.http.delete(this.url + `/tsgroup/del/${id}`)
+  putEditTS(object: Transport, id: number): Observable<Transport> {
+    return this.http.put<Transport>(this.url + `/transport/edit/${id}`, object).pipe()
+    tap(() => console.log('transport edit')),
+      err => console.error(err)
+  }
+
+  delGroup(id: number, arr: number[]) {
+    return this.http.delete(this.url + `/tsgroup/del/${id}`).subscribe(() => {
+      if (arr !== []) {
+        this.detGroupTs(id, arr)
+      }
+    })
+  }
+
+  detGroupTs(id: number, tsID: number[]) {
+    return this.http.post(this.url + `/transport/delGroup/${id}`, tsID)
+      .subscribe(() => this.getAllGroup())
+    err => console.error(err)
+  }
+
+  delTs(id: number) {
+    return this.http.delete(this.url + `/transport/del/${id}`)
+      .subscribe(() => {
+        this.getAllTransport()
+        this.router.navigate(['/dashboard'])
+      })
+    err => console.error(err)
   }
 }

@@ -2,7 +2,7 @@ export interface transportGroup {
   id: number,
   name: string
   description: string
-  unitID? : number[]
+  unitID: number[]
   }
 
 export interface addGroupResp {
@@ -13,6 +13,6 @@ export interface allTransport{
   id: number;
   name: string;
   description: string,
-  unitID?: number[]
+  unitID: number[]
 }
 
