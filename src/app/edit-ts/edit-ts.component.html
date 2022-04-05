@@ -13,10 +13,7 @@
    <ul *ngFor="let item of allGroup let i = index">
       <li>{{item.name}} <input type="checkbox"  (change)="changeGroup(i)" class="check" [checked]="item.check"></li>
     </ul>
-    {{oneTs | json}}
-    <p>разделитель</p>
-    {{allGroup | json}}
-    <div *ngIf="respInfo"><span>ТС успешно отредактировано </span></div>
+       <div *ngIf="respInfo"><span>ТС успешно отредактировано </span></div>
     <div> <button (click)="deleteTs(oneTs.id)">Удалить ТС</button></div>
     <div> <button type="submit">Редактировать</button></div>
   </form>
